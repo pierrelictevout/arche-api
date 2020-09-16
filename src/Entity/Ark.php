@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ArkRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,14 +42,14 @@ class Ark
     private $height;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\OneToMany(targetEntity=Animal::class, mappedBy="ark")
      */
-    private $animals;
+    private $animal;
 
-    /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $humans;
+    public function __construct()
+    {
+        $this->animal = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,26 +104,33 @@ class Ark
         return $this;
     }
 
-    public function getAnimals(): ?string
+    /**
+     * @return Collection|Animal[]
+     */
+    public function getAnimal(): Collection
     {
-        return $this->animals;
+        return $this->animal;
     }
 
-    public function setAnimals(string $animals): self
+    public function addAnimal(Animal $animal): self
     {
-        $this->animals = $animals;
+        if (!$this->animal->contains($animal)) {
+            $this->animal[] = $animal;
+            $animal->setArk($this);
+        }
 
         return $this;
     }
 
-    public function getHumans(): ?string
+    public function removeAnimal(Animal $animal): self
     {
-        return $this->humans;
-    }
-
-    public function setHumans(string $humans): self
-    {
-        $this->humans = $humans;
+        if ($this->animal->contains($animal)) {
+            $this->animal->removeElement($animal);
+            // set the owning side to null (unless already changed)
+            if ($animal->getArk() === $this) {
+                $animal->setArk(null);
+            }
+        }
 
         return $this;
     }

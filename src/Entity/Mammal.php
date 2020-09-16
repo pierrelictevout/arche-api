@@ -24,16 +24,6 @@ class Mammal extends Animal
      */
     private $nbFoot;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $weight;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $height;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -47,30 +37,6 @@ class Mammal extends Animal
     public function setNbFoot(int $nbFoot): self
     {
         $this->nbFoot = $nbFoot;
-
-        return $this;
-    }
-
-    public function getWeight(): ?int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(int $weight): self
-    {
-        $this->weight = $weight;
-
-        return $this;
-    }
-
-    public function getHeight(): ?int
-    {
-        return $this->height;
-    }
-
-    public function setHeight(int $height): self
-    {
-        $this->height = $height;
 
         return $this;
     }

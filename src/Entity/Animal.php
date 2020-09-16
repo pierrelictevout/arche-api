@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource()
  * @ORM\Entity(repositoryClass=AnimalRepository::class)
  */
-abstract class Animal
+class Animal
 {
     /**
      * @ORM\Id
@@ -20,109 +20,92 @@ abstract class Animal
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    private $name;
+    private $length;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    private $sex;
+    private $width;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    private $type;
+    private $weight;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    private $scream;
+    private $height;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\ManyToOne(targetEntity=Ark::class, inversedBy="animal")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $paws;
-
-    private $entity;
-
-    /**
-     * @return mixed
-     */
-    public function getEntity()
-    {
-        return $this->entity;
-    }
-
-    /**
-     * @param mixed $entity
-     */
-    public function setEntity($entity): void
-    {
-        $this->entity = $entity;
-    }
+    private $ark;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getLength(): ?int
     {
-        return $this->name;
+        return $this->length;
     }
 
-    public function setName(string $name): self
+    public function setLength(int $length): self
     {
-        $this->name = $name;
+        $this->length = $length;
 
         return $this;
     }
 
-    public function getSex(): ?string
+    public function getWidth(): ?int
     {
-        return $this->sex;
+        return $this->width;
     }
 
-    public function setSex(string $sex): self
+    public function setWidth(int $width): self
     {
-        $this->sex = $sex;
+        $this->width = $width;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getWeight(): ?int
     {
-        return $this->type;
+        return $this->weight;
     }
 
-    public function setType(string $type): self
+    public function setWeight(int $weight): self
     {
-        $this->type = $type;
+        $this->weight = $weight;
 
         return $this;
     }
 
-    public function getScream(): ?string
+    public function getHeight(): ?int
     {
-        return $this->scream;
+        return $this->height;
     }
 
-    public function setScream(string $scream): self
+    public function setHeight(int $height): self
     {
-        $this->scream = $scream;
+        $this->height = $height;
 
         return $this;
     }
 
-    public function getPaws(): ?int
+    public function getArk(): ?Ark
     {
-        return $this->paws;
+        return $this->ark;
     }
 
-    public function setPaws(int $paws): self
+    public function setArk(?Ark $ark): self
     {
-        $this->paws = $paws;
+        $this->ark = $ark;
 
         return $this;
     }
