@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource()
  * @ORM\Entity(repositoryClass=AnimalRepository::class)
  */
-class Animal
+abstract class Animal
 {
     /**
      * @ORM\Id
@@ -43,6 +43,24 @@ class Animal
      * @ORM\Column(type="smallint")
      */
     private $paws;
+
+    private $entity;
+
+    /**
+     * @return mixed
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * @param mixed $entity
+     */
+    public function setEntity($entity): void
+    {
+        $this->entity = $entity;
+    }
 
     public function getId(): ?int
     {
