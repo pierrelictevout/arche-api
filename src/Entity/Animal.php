@@ -1,134 +1,111 @@
 <?php
 
-
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ArkRepository;
+use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-abstract class Animal
+/**
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass=AnimalRepository::class)
+ */
+class Animal
 {
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=50)
      */
     private $name;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=50)
      */
     private $sex;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=50)
      */
     private $type;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=50)
      */
     private $scream;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $paws;
+
     /**
      * @ORM\Column(type="smallint")
      */
-    /**
-     * @return mixed
-     */
-    public function getId()
+    private $paws;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaws()
+    public function setName(string $name): self
     {
-        return $this->paws;
+        $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getScream()
-    {
-        return $this->scream;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSex()
+    public function getSex(): ?string
     {
         return $this->sex;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getType()
+    public function setSex(string $sex): self
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
+
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @param mixed $paws
-     */
-    public function setPaws($paws)
-    {
-        $this->paws = $paws;
-    }
-
-    /**
-     * @param mixed $scream
-     */
-    public function setScream($scream)
-    {
-        $this->scream = $scream;
-    }
-
-    /**
-     * @param mixed $sex
-     */
-    public function setSex($sex)
-    {
-        $this->sex = $sex;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
+    public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getScream(): ?string
+    {
+        return $this->scream;
+    }
+
+    public function setScream(string $scream): self
+    {
+        $this->scream = $scream;
+
+        return $this;
+    }
+
+    public function getPaws(): ?int
+    {
+        return $this->paws;
+    }
+
+    public function setPaws(int $paws): self
+    {
+        $this->paws = $paws;
+
+        return $this;
     }
 }
