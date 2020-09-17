@@ -8,8 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     collectionOperations={
+ *     "get",
+ *     "post"
+ *     },
+ *     itemOperations={"get","put","delete"}
  * )
  * @ORM\Entity(repositoryClass=AnimalRepository::class)
  */
