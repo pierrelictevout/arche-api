@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Ark;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class ArkFixtures extends Fixture
@@ -22,5 +21,4 @@ class ArkFixtures extends Fixture
 
         $manager->flush();
     }
-
 }

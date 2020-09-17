@@ -11,48 +11,48 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *     subresourceOperations={
- *          "api_arks_animals_get_subresources"={
- *              "method"="get",
- *              "path"="/arks/{id}/animals"
+ *     subresourceOperations = {
+ *          "api_arks_animals_get_subresources" = {
+ *              "method" = "get",
+ *              "path" = "/arks/{id}/animals"
  *     }
  *     },
- *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     collectionOperations = {"get"},
+ *     itemOperations = {"get"}
  *     )
- * @ORM\Entity(repositoryClass=ArkRepository::class)
+ * @ORM\Entity(repositoryClass = ArkRepository::class)
  */
 class Ark
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type = "integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type = "integer")
      */
     private $length;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type = "integer")
      */
     private $width;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type = "integer")
      */
     private $weight;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type = "integer")
      */
     private $height;
 
     /**
-     * @ORM\OneToMany(targetEntity=Animal::class, mappedBy="ark")
+     * @ORM\OneToMany(targetEntity = Animal::class, mappedBy = "ark")
      * @ApiSubresource
      */
     private $animal;
