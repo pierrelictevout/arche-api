@@ -2,16 +2,18 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Animal;
 use App\Entity\Ark;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
+class ArkFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+
         // $product = new Product();
+
         // $manager->persist($product);
         $ark=new Ark();
         $ark->setWidth(2500); //25 mètres de largeur
@@ -20,14 +22,9 @@ class AppFixtures extends Fixture
         $ark->setHeight(500); //5 mètres de hauteur
         $manager->persist($ark);
 
-        $penguin=new Animal();
-        $penguin->setWidth(20);
-        $penguin->setHeight(80);
-        $penguin->setArk($ark);
-        $penguin->setLength(10);
-        $penguin->setWeight(180);
-        $manager->persist($penguin);
+        $this->addReference('Jsp',$ark);
 
         $manager->flush();
     }
+
 }
