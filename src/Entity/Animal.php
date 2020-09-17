@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass=AnimalRepository::class)
+ * @ORM\MappedSuperclass
  */
 class Animal
 {
