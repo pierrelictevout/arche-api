@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AnimalFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
 
         for($i = 0; $i < 20; $i++){
@@ -27,11 +27,9 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
     }
-    public function getDependencies()
+    public function getDependencies(): array
     {
-        return array(
-            ArkFixtures::class,
-        );
+        return [ArkFixtures::class];
     }
 
 }
