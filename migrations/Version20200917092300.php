@@ -10,25 +10,23 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200916091737 extends AbstractMigration
+final class Version20200917092300 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Type can be null';
     }
 
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SEQUENCE human_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE human (id INT NOT NULL, surname VARCHAR(255) NOT NULL, haircolor VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('ALTER TABLE animal ADD type VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP SEQUENCE human_id_seq CASCADE');
-        $this->addSql('DROP TABLE human');
+        $this->addSql('ALTER TABLE animal DROP type');
     }
 }

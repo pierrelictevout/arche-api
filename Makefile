@@ -49,10 +49,12 @@ migrate: vendor                                              ## Execute not yet 
 	$(SYMFONY) doctrine:migrations:migrate --no-interaction
 diff: vendor                                                 ## Generate a migration by comparing your current database to your mapping information
 	$(SYMFONY) doctrine:migrations:diff
-db: vendor remove-images                                      ## Init the database and load fixtures
-	@$(EXEC_PHP) php docker/php/wait-database.php
+db: vendor													 ## Init the database and load fixtures
 	$(SYMFONY) doctrine:database:drop --if-exists --force
 	$(SYMFONY) doctrine:database:create --if-not-exists
+	$(SYMFONY) doctrine:migration:migrate -n
+	$(SYMFONY) doctrine:fixtures:load -n
+
 .PHONY: migrate diff db
 .DEFAULT_GOAL:= help
 help:

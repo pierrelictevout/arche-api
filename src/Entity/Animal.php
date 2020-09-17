@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Animal
 {
+    const TYPE_BIRD='bird';
+    const TYPE_MAMMAL='mammal';
+    const TYPE_REPTILIAN='reptilian';
+    const TYPE_FISH='fish';
+    const TYPE_AMPHIBIAN='amphibian';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -23,7 +28,10 @@ class Animal
      * @ORM\Column(type="integer")
      */
     private $length;
-
+    /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $type;
     /**
      * @ORM\Column(type="integer")
      */
@@ -45,6 +53,23 @@ class Animal
      */
     private $ark;
 
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param $type
+     * @return $this
+     */
+        public function setType(string $type): self
+    {
+        $this->type = $type;
+        return $this;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -108,5 +133,16 @@ class Animal
         $this->ark = $ark;
 
         return $this;
+    }
+
+    public static function getAllTypes():array
+    {
+        return [
+            self::TYPE_BIRD,
+            self::TYPE_REPTILIAN,
+            self::TYPE_MAMMAL,
+            self::TYPE_FISH,
+            self::TYPE_AMPHIBIAN
+        ];
     }
 }
