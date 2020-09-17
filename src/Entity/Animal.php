@@ -5,9 +5,22 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     subresourceOperations={
+ *          "api_arks_animal_get_subresource"={
+ *              "method"="GET",
+ *              "normalization_context"={"groups"={"foobar"}}
+ *          }
+ *     },
+ *     collectionOperations={
+ *     "post"
+ *     },
+ *     itemOperations={"get","put","delete"}
+ * )
  * @ORM\Entity(repositoryClass=AnimalRepository::class)
  */
 class Animal
@@ -30,6 +43,7 @@ class Animal
     private $length;
     /**
      * @ORM\Column(type="string",nullable=true)
+     * @Assert\Choice(callback="getAllTypes",message="Please enter a valid animal type.")
      */
     private $type;
     /**

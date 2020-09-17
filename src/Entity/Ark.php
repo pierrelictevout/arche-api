@@ -3,13 +3,23 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ArkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     subresourceOperations={
+ *          "api_arks_animals_get_subresources"={
+ *              "method"="get",
+ *              "path"="/arks/{id}/animals"
+ *     }
+ *     },
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"}
+ *     )
  * @ORM\Entity(repositoryClass=ArkRepository::class)
  */
 class Ark
@@ -43,6 +53,7 @@ class Ark
 
     /**
      * @ORM\OneToMany(targetEntity=Animal::class, mappedBy="ark")
+     * @ApiSubresource
      */
     private $animal;
 
