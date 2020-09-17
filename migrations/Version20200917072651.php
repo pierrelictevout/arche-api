@@ -14,7 +14,7 @@ final class Version20200917072651 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'This migration creates animal and ark tables.';
     }
 
     public function up(Schema $schema) : void
