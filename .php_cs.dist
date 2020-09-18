@@ -1,0 +1,24 @@
+<?php
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+$finder = Finder::create()
+    ->in(__DIR__.'/src')
+;
+return Config::create()
+    ->setUsingCache(true)
+    ->setRules([
+        '@Symfony'                   => true,
+        'array_syntax'               => ['syntax' => 'short'],
+        'binary_operator_spaces'     => ['align_double_arrow' => true],
+        'ordered_imports'            => true,
+        'doctrine_annotation_spaces' => [
+            'before_argument_assignments' => true,
+            'after_argument_assignments'  => true,
+        ],
+        'yoda_style'                 => null,
+        'visibility_required'        => [
+            'elements' => ['property', 'method', 'const'],
+        ],
+    ])
+    ->setFinder($finder)
+;
