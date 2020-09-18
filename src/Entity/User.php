@@ -10,15 +10,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ApiResource(
  *
- *     attributes={"security"="is_granted('ROLE_USER')"},
- *     collectionOperations={
+ *     attributes = {"security" = "is_granted('ROLE_USER')"},
+ *     collectionOperations = {
  *         "get",
- *         "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *         "post" = {"security" = "is_granted('ROLE_ADMIN')"}
  *     },
- *     itemOperations={
+ *     itemOperations = {
  *         "get",
- *         "put"={"security"="is_granted('ROLE_ADMIN')"},
- *         "delete"={"security"="is_granted('ROLE_ADMIN')"}
+ *         "put" = {"security" = "is_granted('ROLE_ADMIN')"},
+ *         "delete" = {"security" = "is_granted('ROLE_ADMIN')"}
  * }),
  * @ORM\Entity(repositoryClass = UserRepository::class)
  * @ORM\Table(name = "`user`")

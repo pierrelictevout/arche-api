@@ -17,10 +17,10 @@ use Doctrine\ORM\Mapping as ORM;
  *              "path" = "/arks/{id}/animals"
  *     }
  *     },
- *     collectionOperations={
+ *     collectionOperations = {
  *          "get",
  *      },
- *      itemOperations={
+ *      itemOperations = {
  *          "get",
  *     }
  *     )
