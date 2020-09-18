@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ApiResource(
- *
  *     attributes = {"security" = "is_granted('ROLE_USER')"},
  *     collectionOperations = {
  *         "get",
@@ -93,25 +92,11 @@ class User implements UserInterface, \Serializable
 
     public function serialize()
     {
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ]);
         // TODO: Implement serialize() method.
     }
 
     public function unserialize($serialized)
     {
-        list(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-            ) = unserialize($serialized, ['allowed_classes' => false]);
         // TODO: Implement unserialize() method.
     }
 
