@@ -17,8 +17,12 @@ use Doctrine\ORM\Mapping as ORM;
  *              "path" = "/arks/{id}/animals"
  *     }
  *     },
- *     collectionOperations = {"get"},
- *     itemOperations = {"get"}
+ *     collectionOperations={
+ *          "get",
+ *      },
+ *      itemOperations={
+ *          "get",
+ *     }
  *     )
  * @ORM\Entity(repositoryClass = ArkRepository::class)
  */
