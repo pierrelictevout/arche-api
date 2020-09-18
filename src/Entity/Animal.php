@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\NumericFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -25,6 +29,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  * @ORM\Entity(repositoryClass = AnimalRepository::class)
+ * @ApiFilter(SearchFilter::class, properties = {"type" : "exact"})
+ * @ApiFilter(RangeFilter::class, properties = {"width", "height", "length", "weight"})
+ * @ApiFilter(NumericFilter::class, properties = {"width", "height", "length", "weight"})
  */
 class Animal
 {
