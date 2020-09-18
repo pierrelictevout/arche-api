@@ -16,9 +16,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     },
  *     collectionOperations = {
- *     "post"
+ *         "post" = {"security" = "is_granted('ROLE_ADMIN')"}
  *     },
- *     itemOperations = {"get", "put", "delete"}
+ *     itemOperations = {
+ *         "get",
+ *         "put" = {"security" = "is_granted('ROLE_ADMIN')"},
+ *         "delete" = {"security" = "is_granted('ROLE_ADMIN')"}
+ *     }
  * )
  * @ORM\Entity(repositoryClass = AnimalRepository::class)
  */
